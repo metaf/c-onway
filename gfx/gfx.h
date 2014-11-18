@@ -10,6 +10,9 @@ Version 2, 9/23/2011 - Fixes a bug that could result in jerky animation.
 #ifndef GFX_H
 #define GFX_H
 
+/* Fill a rect, with top/left coords x/y */
+void gfx_rect( int x, int y, int w, int h );
+
 /* Open a new graphics window. */
 void gfx_open( int width, int height, const char *title );
 
