@@ -15,8 +15,8 @@ typedef struct board {
 	int boardWidth;
 	int boardHeight;
 	char **cells;
-} board;
-static board b;
+} Board;
+static Board b;
 
 
 static void xg_free_board(){
@@ -25,23 +25,23 @@ static void xg_free_board(){
 	}
 }
 
-static char *xg_alloc_board(){
-	static char* board = calloc(numCellsY, sizeof(char*));
+static char **xg_alloc_board(){
+	char** board = calloc(numCellsY, sizeof(char*));
 	for(int i = 0; i<numCellsY; i++){
-		board[i]=(char*)calloc(numCellsX,sizeof(char));
+		board[i]=calloc(numCellsX,sizeof(char));
 	}
 	return board;
 }
 
-board xg_init(int gridSizePx, int widthPx, int heightPx, char* title){
-	gfx_open(xsize,ysize,title);
+Board xg_init(int gridSizePx, int widthPx, int heightPx, char* title){
+	gfx_open(widthPx,heightPx,title);
 	gridSize=gridSizePx;
 	height=heightPx;
 	width=widthPx;
 	numCellsY = heightPx/gridSizePx;
 	numCellsX = widthPx/gridSizePx;
 
-	b = {numCellsX, numCellsY, xg_alloc_board()};
+	b = (Board) {numCellsX, numCellsY, xg_alloc_board()};
 	return b;
 }
 
