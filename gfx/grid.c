@@ -5,17 +5,15 @@ Use the simple gfx library to implement a grid based graphics thing.
 #include <stdio.h>
 #include <stdlib.h>
 #include "gfx.h"
+#include "grid.h"
+
 static int gridSize;
 static int width;
 static int height;
 static int numCellsX;
 static int numCellsY;
 
-typedef struct board {
-	int boardWidth;
-	int boardHeight;
-	char **cells;
-} Board;
+
 static Board b;
 
 
@@ -52,4 +50,3 @@ void xg_draw_board(){
 void xg_destroy(){
 	xg_free_board();
 }
-
