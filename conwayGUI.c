@@ -43,7 +43,7 @@ int main(int argc, char **argv){
     int px_width = width * grid_size;
     int px_height = height * grid_size;
 
-    gfx_open(px_width,px_height,"C-onway");
+    gfx_open(px_width,px_height,"X C-onway");
 
     char event;
     while(1){
@@ -54,7 +54,15 @@ int main(int argc, char **argv){
                 exit(0);
                 break;
             case 's':
-                conway_step(b)
+                //conway_step(b);
+                break;
+            case 1:
+                printf("mouse button 1");
+                fflush(stdout);
+                break;
+            case 2:
+                printf("mouse button 2");
+                fflush(stdout);
                 break;
         }
 
