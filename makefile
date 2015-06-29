@@ -1,14 +1,19 @@
 CC=gcc
 CFLAGS=-std=gnu99 -Wall -g
 
-conwayGUI: conwayGUI.o
-	$(CC) $(CFLAGS) -o conwayGUI conwayGUI.o
+#$@ is the target
+#$^ is all prerequisites
 
-conway: conway.o gfx/grid.o gfx/gfx.o
-	$(CC) $(CFLAGS) -o conway conway.o gfx/gfx.o gfx/grid.o -lX11 -lm
+conwayGUI: conwayGUI.o gfx/gfx.o conway.o
+	$(CC) $(CFLAGS) -o $@ $^  -lX11 -lm
 
-conwayGUI.o:
-	$(CC) $(CFLAGS) -c conwayGUI.c -o conwayGUI.o
+conwayGUI.o: conwayGUI.c
+	$(CC) $(CFLAGS) -o $@ -c $^
+
+gfx/gfx.o: gfx/gfx.c
+	$(CC) $(CFLAGS) -o $@ -c $^
+
+
 
 gfx/gridtest: gfx/gridtest.o gfx/grid.o gfx/gfx.o
 	$(CC) $(CFLAGS) -o gfx/gridtest gfx/grid.o gfx/gridtest.o gfx/gfx.o -lX11 -lm
@@ -16,8 +21,7 @@ gfx/gridtest: gfx/gridtest.o gfx/grid.o gfx/gfx.o
 gfx/grid.o: gfx/grid.c gfx/grid.h
 	$(CC) $(CFLAGS) -c gfx/grid.c -o gfx/grid.o
 
-gfx/gfx.o: gfx/gfx.c
-	$(CC) $(CFLAGS) -c gfx/gfx.c -o gfx/gfx.o
+
 
 gfx/gridtest.o: gfx/gridtest.c
 	$(CC) $(CFLAGS) -c gfx/gridtest.c -o gfx/gridtest.o
