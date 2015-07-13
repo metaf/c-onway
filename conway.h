@@ -2,11 +2,14 @@
 #define CONWAY_H
 
 typedef struct board {
-	int boardWidth;
-	int boardHeight;
+	int width;
+	int height;
 	char **cells;
 } Board;
 
 Board conway_get_board(int width, int height);
+void conway_destroy_board(Board b);
+
+
 
 #endif

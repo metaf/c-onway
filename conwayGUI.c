@@ -4,13 +4,28 @@
 #include "conway.h"
 #include "gfx/gfx.h"
 
+static int width =500;
+static int height = 350;
+static int grid_size = 2;
+
+void draw_board(Board b){
+    for(int i =0; i<b.height; i++){
+        for (int j = 0; j<b.width; j++){
+            int topCoord=i*grid_size;
+            int leftCoord=j*grid_size;
+            if (b.cells[i][j] == 1){
+                gfx_color(255,255,255);
+            }
+            else{
+                gfx_color(0,0,0);
+            }
+            gfx_rect(leftCoord, topCoord, grid_size, grid_size);
+        }
+    }
+}
+
 int main(int argc, char **argv){
-    int width =500;
-    int height = 350;
-    int grid_size = 5;
     int c;
-
-
     /**
         Width and Height are in grid-cells.  grid_size is in pixels.
         Scale width or height by grid-size to get the pixel size.
@@ -54,7 +69,7 @@ int main(int argc, char **argv){
                 exit(0);
                 break;
             case 's':
-                //conway_step(b);
+                conway_step(b);
                 break;
             case 1:
                 printf("mouse button 1");
@@ -65,7 +80,7 @@ int main(int argc, char **argv){
                 fflush(stdout);
                 break;
         }
-
+        draw_board(b);
 
 
         //if its' more than 1/60 later, draw board
