@@ -1,6 +1,8 @@
 #include "conway.h"
 #include <stdlib.h>
 
+#include <time.h>
+
 Board conway_get_board(int width, int height) {
     char** cells = calloc(height, sizeof(char*));
 	for(int i = 0; i<height; i++){
@@ -22,6 +24,21 @@ void conway_step(Board b){
             }
         }
     }
+}
+
+void conway_randomize(Board b){
+    srand(time(NULL));
+    for (int i = 0; i<b.height; i++){
+        for (int j = 0; j<b.width; j++){
+            if (rand() % 2 ==1){
+                b.cells[i][j] = 1;
+            }
+            else{
+                b.cells[i][j] = 0;
+            }
+        }
+    }
+
 }
 
 void conway_destroy_board(Board b){

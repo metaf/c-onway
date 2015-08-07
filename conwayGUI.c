@@ -71,6 +71,9 @@ int main(int argc, char **argv){
             case 's':
                 conway_step(b);
                 break;
+            case 'r':
+                conway_randomize(b);
+                break;
             case 1:
                 printf("mouse button 1");
                 fflush(stdout);
